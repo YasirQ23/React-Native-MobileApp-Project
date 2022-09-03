@@ -1,20 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { View, TextInput } from "react-native";
 
-export default function App() {
+const UselessTextInput = (props) => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <TextInput
+      {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
+      editable
+      maxLength={40}
+    />
+  );
+};
+
+const UselessTextInputMultiline = () => {
+  const [value, onChangeText] = React.useState("Input Code To Prettify");
+
+  return (
+    <View
+      style={{
+        backgroundColor: "aqua",
+        borderBottomColor: "#000000",
+        borderBottomWidth: 1,
+        justifyContent: 'center', //Centered horizontally
+        alignItems: 'center', //Centered vertically
+        flex:1
+      }}
+    >
+      <UselessTextInput
+        multiline
+        numberOfLines={4}
+        onChangeText={(text) => onChangeText(text)}
+        value={value}
+        style={{ padding: 10, textAlign: "center", 
+      backgroundColor:"white",
+    borderRadius:"10px"}}
+      />
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default UselessTextInputMultiline;
